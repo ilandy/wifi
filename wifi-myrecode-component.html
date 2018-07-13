@@ -1,0 +1,167 @@
+<!-- wifi預約記錄 元件開始 -->
+<script type="text/javascript" src="resources/common/js/jquery.form.js"></script>
+<script type="text/javascript" src="resources/common/js/knockout.js"></script>
+<script type="text/javascript" src="resources/rwd_c_018/js/sweetalert2.all.js"></script>
+
+<section class="ts-u25-form ts-form" style="background-color: #f5f5f5; color: #505050;" id="ts_1_WifiRateRecording_rwd001_C_2_1_rwd_c_019">
+    <hr class="ts-hr ts-hr--transparent-50">
+    <div class="ts-u25-form__container container-fluid">
+        <h2 class="ts-u25-form__heading--main text-center">預約記錄</h2>
+    </div>
+    <hr class="ts-hr ts-hr--transparent-50">
+    <div class="ts-u25-form__container container-fluid">
+        <!-- ko foreach: orderList -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row row--10">
+                    <div class="col ts-u25-form__col-label">國家</div>
+                    <div class="rest" style="line-height: 40px;">
+                        <div class="row row--10">
+                            <div class="col col-xs-12 col-md-12" data-bind="text: $data.country()">中國</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="ts-hr ts-hr--transparent-20 hidden-xs hidden-sm">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row row--10">
+                    <div class="col ts-u25-form__col-label">機種</div>
+                    <div class="rest" style="line-height: 40px;">
+                        <div class="row row--10">
+                            <div class="col col-xs-12 col-md-12" data-bind="text: $data.ratename()">中國機</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="ts-hr ts-hr--transparent-20 hidden-xs hidden-sm">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row row--10">
+                    <div class="col ts-u25-form__col-label">出國日</div>
+                    <div class="rest" style="line-height: 40px;">
+                        <div class="row row--10">
+                            <div class="col col-xs-12 col-md-12" data-bind="text: $data.departuredate()">2018/07/15</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="ts-hr ts-hr--transparent-20 hidden-xs hidden-sm">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row row--10">
+                    <div class="col ts-u25-form__col-label">返台日</div>
+                    <div class="rest" style="line-height: 40px;">
+                        <div class="row row--10">
+                            <div class="col col-xs-12 col-md-12" data-bind="text: $data.arrivaldate()">2018/07/30</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="ts-hr ts-hr--transparent-20 hidden-xs hidden-sm">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row row--10">
+                    <div class="col ts-u25-form__col-label">使用天數</div>
+                    <div class="rest" style="line-height: 40px;">
+                        <div class="row row--10">
+                            <div class="col col-xs-12 col-md-12" data-bind="text: $data.duration()">3</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="ts-hr ts-hr--transparent-20 hidden-xs hidden-sm">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row row--10">
+                    <div class="col ts-u25-form__col-label">租用數量</div>
+                    <div class="rest" style="line-height: 40px;">
+                        <div class="row row--10">
+                            <div class="col col-xs-12 col-md-12" data-bind="text: $data.qty()">2</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="ts-hr ts-hr--transparent-20 hidden-xs hidden-sm">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row row--10">
+                    <div class="col ts-u25-form__col-label">總金額</div>
+                    <div class="rest" style="line-height: 40px;">
+                        <div class="row row--10">
+                            <div class="col col-xs-12 col-md-12" data-bind="text: &#39;$&#39;+$parent.toThousands($data.amount())">$1,728</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="ts-hr ts-hr--transparent-20 hidden-xs hidden-sm">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row row--10">
+                    <div class="col ts-u25-form__col-label">日使用量</div>
+                    <div class="rest" style="line-height: 40px;">
+                        <div class="row row--10">
+                            <!-- 缺 -->
+                            <div class="col col-xs-12 col-md-12" data-bind="text: $data.machinetype()">每日超過1GB後降速至256Kbps</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="ts-hr ts-hr--transparent-20 hidden-xs hidden-sm">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row row--10">
+                    <div class="col ts-u25-form__col-label">
+                        <a data-bind="attr: {&#39;id&#39;: $data.orderid()}, click: $parent.endDateMsg" id="TS1530885396">
+                            <img src="resources/rwd_c_018/images/info-circle-font-awesome.png">
+                        </a>最晚歸還日期
+                    </div>
+                    <div class="rest" style="line-height: 40px;">
+                        <div class="row row--10">
+                            <div class="col col-xs-12 col-md-12" data-bind="text: $data.endDate()">2018/7/31 17:00</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="ts-hr ts-hr--transparent-20 hidden-xs hidden-sm">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row row--10">
+                    <div class="col ts-u25-form__col-label">取機機場</div>
+                    <div class="rest" style="line-height: 40px;">
+                        <div class="row row--10">
+                            <div class="col col-xs-12 col-md-12" data-bind="text: $parent.getDeliverName($data.deliver())">桃園國際機場-第一航廈</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="ts-hr ts-hr--transparent-20 hidden-xs hidden-sm">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row row--10">
+                    <div class="col ts-u25-form__col-label">申請狀態</div>
+                    <div class="rest" style="line-height: 40px;">
+                        <div class="row row--10">
+                            <div class="col col-xs-12 col-md-12" data-bind="text: $data.editable()? $data.editable()==1?&#39;預約成功&#39;:&#39;出貨中不可取消&#39;:&#39;&#39;">出貨中不可取消</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="ts-hr ts-hr--transparent-30">
+        <div class="text-center">
+            <button class="btn ts-u25-form__submit-btn" data-bind="style: { backgroundColor: $data.editable()==1 ? &#39;&#39; : &#39;gray&#39;, opacity: $data.editable()==1 ? &#39;&#39; : &#39;0.7&#39; }, click: $parent.cancelOrder.bind($data, $data.editable(), $data.orderid())"
+                style="background-color: gray; opacity: 0.7;">取消預約</button>
+        </div>
+    </div>
+</section>
