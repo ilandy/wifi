@@ -1,0 +1,644 @@
+ <!-- wifi申請表單 元件開始 -->
+    <link rel="stylesheet" type="text/css" href="resources/rwd_c_018/css/tstar-u25-form.css">
+    <script type="text/javascript" src="resources/common/js/libs/jquery-validation/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="resources/common/js/jquery.form.js"></script>
+    <script type="text/javascript" src="resources/common/js/knockout.js"></script>
+    <script type="text/javascript" src="resources/rwd_c_018/js/sweetalert2.all.js"></script>
+    
+    <section class="ts-u25-form ts-form page_content" style="background-color: #f5f5f5; color: #505050;" id="ts_1_WifiRateApply_rwd001_C_2_1_rwd_c_018">
+      <hr class="ts-hr ts-hr--transparent-50">
+      <div class="ts-u25-form__container container-fluid">
+        <h2 class="ts-u25-form__heading--main text-center">Wi-Fi分享器申請</h2>
+      </div>
+      <hr class="ts-hr ts-hr--transparent-50">
+      <div class="ts-u25-form__container container-fluid">
+        <form id="rwd_c_018Form" novalidate="novalidate">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="row row--10">
+              <div class="col ts-u25-form__col-label">選擇國家</div>
+              <div class="rest">
+                <div class="row row--10">
+                  <div class="col col-xs-12 col-md-6">
+                    <select class="form-control ts-u25-form__control ts-u25-form__select" id="v_continentType" name="v_continentType" data-bind="options: continentTypeList,
+                                       optionsText: 'name',
+                                       value: continentType,
+                                       optionsCaption: '- 請選擇地區 -',
+                                       event:{ change: getCountry }"><option value="">- 請選擇地區 -</option><option value="">Asia Pacific 亞洲/大洋洲</option><option value="">Europe 歐洲</option><option value="">America 美洲</option><option value="">Middle East 中東</option><option value="">Africa 非洲</option>
+                    </select>
+                    <input type="hidden" id="continentType" name="continentType">
+                    <hr class="ts-hr ts-hr--transparent-10 hidden-md hidden-lg">
+                  </div>
+                  <div class="col col-xs-12 col-md-6">
+                    <select class="form-control ts-u25-form__control ts-u25-form__select" id="v_country" name="v_country" data-bind="options: countryList,
+                                       optionsText: 'name',
+                                       value: country,
+                                       optionsCaption: '- 請選擇國家 -',
+                                       event:{ change: getRatePlan }"><option value="">- 請選擇國家 -</option>
+                    </select>
+                    <input type="hidden" id="country" name="country">
+                    <hr class="ts-hr ts-hr--transparent-10 hidden-md hidden-lg">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="ts-hr ts-hr--transparent-20 hidden-xs hidden-sm">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="row row--10">
+              <div class="col ts-u25-form__col-label">
+                <a id="ratePlanScrollTop" data-offset="rwd_s_024_3_1" style="line-height: 40px;cursor: pointer;"><img src="resources/rwd_c_018/images/info-circle-font-awesome.png"></a>機種
+              </div>
+              <div class="rest">
+                <div class="row row--10">
+                  <div class="col col-xs-12 col-md-6"><!-- machineRatePlan  machineType -->
+                    <select class="form-control ts-u25-form__control ts-u25-form__select" id="v_rate_plan" name="v_rate_plan" data-bind="options: ratePlanList,
+                             optionsCaption: ratePlanOptionsCaption,
+                                       optionsText: 'name',
+                                       value: rate_plan,
+                                       event:{ change: setRatePlan }"><option value="">- 請選擇機種 -</option>
+                    </select>
+                    <input type="hidden" id="rate_plan" name="rate_plan">
+                    <hr class="ts-hr ts-hr--transparent-10 hidden-md hidden-lg">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="ts-hr ts-hr--transparent-20 hidden-xs hidden-sm">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="row row--10">
+              <div class="col ts-u25-form__col-label">
+                <a class="popTitleDepartureDate"><img src="resources/rwd_c_018/images/info-circle-font-awesome.png"></a>出國日
+              </div>
+              <div class="rest">
+                <div class="row row--10">
+                  <div class="col col-xs-12">
+                    <div class="ts-datepicker">
+                      <div class="input-group">
+                        <input class="form-control form-control--datepicker ts-form__control" type="text" id="departure_date" name="departure_date" datepicker="datepicker" placeholder="- 請選擇日期(最早可選擇出國前4天日期) -" data-bind="value: departure_date, event:{ change: triggerValid.bind($data, 'departure_date') }">
+                      </div><span class="input-group-addon--calendar"><span class="icons-calendar"></span></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="ts-hr ts-hr--transparent-20 hidden-xs hidden-sm">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="row row--10">
+              <div class="col ts-u25-form__col-label">返台日</div>
+              <div class="rest">
+                <div class="row row--10">
+                  <div class="col col-xs-12">
+                    <div class="ts-datepicker">
+                      <div class="input-group">
+                        <input class="form-control form-control--datepicker ts-form__control" type="text" id="arrival_date" name="arrival_date" datepicker="datepicker" placeholder="- 請選擇日期 -" data-bind="value: arrival_date, event:{ change: triggerValid.bind($data, 'arrival_date') }">
+                      </div><span class="input-group-addon--calendar"><span class="icons-calendar"></span></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="ts-hr ts-hr--transparent-20 hidden-xs hidden-sm">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="row row--10">
+              <div class="col ts-u25-form__col-label">使用天數</div>
+              <div class="rest" style="line-height: 40px;">
+                <div class="row row--10"><!-- duration -->
+                  <div class="col col-xs-12 col-md-12" data-bind="text: duration()? duration()+'天':''"></div>
+                  <input type="hidden" id="duration" name="duration" data-bind="value: duration()" value="">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="ts-hr ts-hr--transparent-20 hidden-xs hidden-sm">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="row row--10">
+              <div class="col ts-u25-form__col-label">租借數量</div>
+              <div class="rest">
+                <div class="row row--10">
+                  <div class="col col-xs-12 col-md-2">
+                    <select class="form-control ts-u25-form__control ts-u25-form__select" id="qty" name="qty" data-bind="options: qtyList,
+                                       optionsText: 'name',
+                                       optionsValue: 'value',
+                                       value: qty,
+                                       optionsCaption: '- 請選擇數量 -'"><option value="">- 請選擇數量 -</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option>
+                    </select>
+                    <hr class="ts-hr ts-hr--transparent-10 hidden-md hidden-lg">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="ts-hr ts-hr--transparent-20 hidden-xs hidden-sm">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="row row--10">
+              <div class="col ts-u25-form__col-label">產品費率</div>
+              <div class="rest" style="line-height: 40px;">
+                <div class="row row--10">
+                  <div class="col col-xs-12 col-md-12" data-bind="text: price()? '每台$'+price()+'/日':''">每台$288/日</div>
+                  <input type="hidden" id="price" name="price" data-bind="value: price()" value="288">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="ts-hr ts-hr--transparent-20 hidden-xs hidden-sm">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="row row--10">
+              <div class="col ts-u25-form__col-label">總金額</div>
+              <div class="rest" style="line-height: 40px;">
+                <div class="row row--10"><!-- 使用天數x租借數量x產品費率 amount -->
+                  <div class="col col-xs-12 col-md-12" data-bind="text: amount()? '$'+toThousands(amount()):''"></div>
+                  <input type="hidden" id="amount" name="amount" data-bind="value: amount()" value="">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="ts-hr ts-hr--transparent-20 hidden-xs hidden-sm">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="row row--10">
+              <div class="col ts-u25-form__col-label">日使用量</div>
+              <div class="rest" style="line-height: 40px;">
+                <div class="row row--10"><!-- machineType -->
+                  <div class="col col-xs-12 col-md-12" data-bind="text: rate_plan()? rate_plan().machineType():''"></div>
+                  <input type="hidden" id="machine_type" name="machine_type">
+                  <input type="hidden" id="rate_package" name="rate_package">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="ts-hr ts-hr--transparent-20 hidden-xs hidden-sm">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="row row--10">
+              <div class="col ts-u25-form__col-label">
+                <a class="popTitleEndDate"><img src="resources/rwd_c_018/images/info-circle-font-awesome.png"></a>最晚歸還日期
+              </div>
+              <div class="rest" style="line-height: 40px;">
+                <div class="row row--10"><!-- endDate=arrivalDate+1 -->
+                  <div class="col col-xs-12 col-md-12" data-bind="text: endDate()"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="ts-hr ts-hr--transparent-20 hidden-xs hidden-sm">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="row row--10">
+              <div class="col ts-u25-form__col-label">
+                <a id="deliverScrollTop" data-offset="rwd_c_020_4_1" style="cursor: pointer;"><img src="resources/rwd_c_018/images/info-circle-font-awesome.png"></a>取機機場
+              </div>
+              <div class="rest">
+                <div class="row row--10">
+                  <div class="col col-xs-12 col-md-12">
+                    <select class="form-control ts-u25-form__control ts-u25-form__select" id="deliver" name="deliver" data-bind="options: deliverList,
+                                       optionsText: 'name',
+                                       optionsValue: 'value',
+                                       value: deliver,
+                                       optionsCaption: '- 請選擇機場 -'"><option value="">- 請選擇機場 -</option><option value="C1">桃園國際機場-第一航廈</option><option value="C2">桃園國際機場-第二航廈</option><option value="KHH">高雄國際機場</option>
+                    </select>
+                    <hr class="ts-hr ts-hr--transparent-10 hidden-md hidden-lg">
+                  </div>
+                  <input type="hidden" id="return_way" name="return_way" data-bind="value: deliver()" value="">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="ts-hr ts-hr--transparent-30">
+        <div class="text-center">
+          <button class="btn ts-u25-form__submit-btn" data-bind="style: { backgroundColor: orderEnable() ? '' : 'gray' }, enable: orderEnable(), click: redirectOrder" style="">預約記錄</button>
+          <button class="btn ts-u25-form__submit-btn" data-bind="style: { backgroundColor: order() ? '' : 'gray' }, enable: order()" style="">送出預約</button>
+        </div>
+        <hr class="ts-hr ts-hr--transparent-40">
+        </form>
+        </div>
+    </section>
+    <script language="javascript">
+    $(function(){
+      var dataModel;
+      
+        dataModel = new DataModel();
+        ko.applyBindings(dataModel, document.getElementById('ts_1_WifiRateApply_rwd001_C_2_1_rwd_c_018'));
+        dataModel.init();
+        
+        $('#ratePlanScrollTop').on('click touchend',function(){
+        var elem = $('*[data-id='+ $(this).data('offset') +']');
+        if (elem.length>0) {
+          var place = elem.offset().top;
+          $('html,body').stop().animate({
+              scrollTop: place - 80
+          },500);
+        }
+      });
+        
+        $('#deliverScrollTop').on('click touchend',function(){
+        var elem = $('*[data-id='+ $(this).data('offset') +']');
+        if (elem.length>0) {
+          var place = elem.offset().top;
+          $('html,body').stop().animate({
+              scrollTop: place - 80
+          },500);
+        }
+      });
+        $(".popTitleDepartureDate").on("click", function () {
+        swal({
+          html: '<div>僅提供出國前四天之前預約。</div>',
+                showCloseButton: true
+              });
+      });
+        $(".popTitleEndDate").on("click", function () {
+            swal({
+              html: '<div style="text-align: left;">最晚須於返台日隔天下午17:00前歸還設備。</div>'+
+              '<div style="text-align: left;">歸還方式:</div>'+
+                      '<div style="text-align: left;">1.機場櫃台或還機箱歸還</div>'+
+                      '<div style="text-align: left;">2.快遞至105台北市松山區南京東路三段248號3樓之2</div>'+
+                      '<div style="text-align: left;">(02)2751-9338 總機收</div>',
+                showCloseButton: true
+            });
+        });
+        $("#departure_date").click(function(){
+            //取得系統日
+        getSysDate().done(function (r) {
+          dataModel.sysDate(r);
+        });
+          });
+      
+      //檢核必填
+      jQuery.validator.addMethod("ko_required", function (value, element) {
+        return dataModel[element.id]();		
+      });
+      jQuery.validator.addMethod("ko_required_select", function (value, element) {
+        return dataModel[element.id.split('v_')[1]]() && dataModel[element.id.split('v_')[1]]().value();		
+      });
+      //驗證日期格式為 yyyy/mm/dd
+      jQuery.validator.addMethod("dateFormat", function (value, element) {
+        return this.optional(element) || ( /^((^((1[8-9]\d{2})|([2-9]\d{3}))([-\/\._])(10|12|0?[13578])([-\/\._])(3[01]|[12][0-9]|0?[1-9])$)|(^((1[8-9]\d{2})|([2-9]\d{3}))([-\/\._])(11|0?[469])([-\/\._])(30|[12][0-9]|0?[1-9])$)|(^((1[8-9]\d{2})|([2-9]\d{3}))([-\/\._])(0?2)([-\/\._])(2[0-8]|1[0-9]|0?[1-9])$)|(^([2468][048]00)([-\/\._])(0?2)([-\/\._])(29)$)|(^([3579][26]00)([-\/\._])(0?2)([-\/\._])(29)$)|(^([1][89][0][48])([-\/\._])(0?2)([-\/\._])(29)$)|(^([2-9][0-9][0][48])([-\/\._])(0?2)([-\/\._])(29)$)|(^([1][89][2468][048])([-\/\._])(0?2)([-\/\._])(29)$)|(^([2-9][0-9][2468][048])([-\/\._])(0?2)([-\/\._])(29)$)|(^([1][89][13579][26])([-\/\._])(0?2)([-\/\._])(29)$)|(^([2-9][0-9][13579][26])([-\/\._])(0?2)([-\/\._])(29)$))/.test(dataModel[element.id]()));
+      });
+      //檢查起訖日
+      jQuery.validator.addMethod("compareDate", function(value, element) {
+        return dataModel.compareDate(dataModel.departure_date(), dataModel.arrival_date());
+      });
+      //僅可選4天後的日期
+      jQuery.validator.addMethod("checkDepartureDate", function(value, element) {
+        //console.log(dataModel[element.id]() +" ::: "+ dataModel.sysDate());
+        var selectDate = new Date(dataModel[element.id]()).setHours(0, 0, 0),
+          sysDate = new Date(dataModel.sysDate()).setHours(0, 0, 0);
+        return selectDate>=sysDate;
+      });
+      
+      //設定驗證規則和顯示錯誤訊息
+      var options = {
+        ignore: ".ignore",
+        rules: {
+          v_continentType:{
+            ko_required_select: true
+          },
+          v_country:{
+            ko_required_select: true
+          },
+          v_rate_plan:{
+            ko_required_select: true
+          },
+          departure_date:{
+            ko_required: true,
+            dateFormat:true,
+            checkDepartureDate:true
+          },
+          arrival_date:{
+            ko_required: true,
+            dateFormat:true,
+            compareDate:true
+          },
+          qty:{
+            ko_required: true
+          },
+          deliver: {
+            ko_required: true
+          }
+        },
+        messages: {
+          v_continentType:{
+            ko_required_select: "請選擇地區"
+          },
+          v_country:{
+            ko_required_select: "請選擇國家"
+          },
+          v_rate_plan:{
+            ko_required_select: "請選擇機種"
+          },
+          departure_date:{
+            ko_required: "請輸入出國日",
+            dateFormat: "請輸入正確的日期格式 ex:2018/06/15",
+            checkDepartureDate: "出國日僅可選4天後的日期"
+          },
+          arrival_date:{
+            ko_required: "請輸入返台日",
+            dateFormat:"請輸入正確的日期格式 ex:2018/06/15",
+            compareDate:"返台日必須大於出國日"
+          },
+          qty:{
+            ko_required: "請選擇租借數量"
+          },
+          deliver:{
+            ko_required: "請選擇取機機場"
+          }
+        },
+        highlight: function (element, errorClass, validClass) {
+          $(element).addClass(errorClass).removeClass(validClass);
+        },
+        unhighlight: function (element, errorClass, validClass) {
+          $(element).removeClass(errorClass).addClass(validClass);
+        },
+        errorPlacement: function (error, element) {
+          element.parent().append(error);
+          error.css('color', 'red');
+        },
+        submitHandler: function (form) {
+          submitForm(form);
+        },
+        onkeyup: false
+      };
+      $('#rwd_c_018Form').validate(options);
+        
+      function submitForm(form) {
+        console.info("submit group form");
+        /* $(document.forms.rwd_c_018Form).ajaxSubmit({
+          success: function (r) {
+            console.log(r);
+            if (r.result && r.result==='0000') {
+              alert('你的WiFi分享器預約成功，相關資訊請見預約紀錄。');
+            } else {
+              alert('系統忙碌中，請稍後再試。');
+            }
+            document.location.reload();
+          },
+          error: function (result) {
+            alert(result.responseText);
+            if (window.console) console.log(JSON.stringify(result));
+            document.location.reload();
+          }
+          }); */
+        $.post('https://uattsp.tstartel.com/rest/rateWifiInfo/saveOrder', $('#rwd_c_018Form').serialize())
+        .done(function (r) {
+            if (r.result && r.result==='0000') {
+            alert('你的WiFi分享器預約成功，相關資訊請見預約紀錄。');
+          } else {
+            alert('系統忙碌中，請稍後再試。');
+          }
+          document.location.reload();
+        }).fail(function (r) {
+            alert(r.responseText);
+          if (window.console) console.log(JSON.stringify(r));
+          document.location.reload();
+        });
+      };
+      
+      function getSysDate(){
+        var defer = $.Deferred();
+        $.when($.get('https://uattsp.tstartel.com/rest/rateWifiInfo/sysDate'))
+        .done(function(r){ defer.resolve(r); })
+        .fail(function(r){ console.log(r); defer.reject('error'); });
+        return defer.promise();
+      };
+      
+      function option(value, name, other) {
+        var self = this;
+        self.name = ko.observable(name);
+        self.value = ko.observable(value);
+        if (other != null) {
+          self.others = ko.observable(JSON.stringify(other));
+        }
+      };
+      
+      function machine(item){
+        var self = this;
+        self.name = ko.observable(item.machineName);
+        self.machineRatePackage = ko.observable(item.machineRatePackage);
+        self.value = ko.observable(item.machineRatePlan);
+        self.machineType = ko.observable(item.machineType);
+      };
+      function DataModel() {
+        var self = this;
+        
+        self.sysDate = ko.observable();
+        
+        self.continentType = ko.observable();
+        self.continentTypeList = ko.observableArray();
+        
+        self.country = ko.observable();
+        self.countryList = ko.observableArray();
+        
+        self.rate_plan = ko.observable();
+        self.ratePlanList = ko.observableArray();
+        self.ratePlanOptionsCaption = ko.observable();
+        
+        self.departure_date = ko.observable();
+        
+        self.arrival_date = ko.observable();
+        
+        self.duration = ko.observable();
+        
+        self.qty = ko.observable();
+        self.qtyList = ko.observableArray();
+        
+        self.price = ko.observable();
+        
+        self.amount = ko.observable();
+        
+        self.machineType = ko.observable();
+        
+        self.endDate = ko.observable();
+        
+        self.deliver = ko.observable();
+        self.deliverList = ko.observableArray();
+        
+        self.orderEnable = ko.observable(false);
+        
+        self.order = ko.observable(false);
+        
+        self.compareDate = function(sDate, eDate){
+          return sDate && eDate && new Date(Date.parse(sDate.replace("-", "/"))) <= new Date(Date.parse(eDate.replace("-", "/")))
+        };
+        
+        self.checkDepartureDate = function(){
+          return new Date(self.departure_date())>=new Date(self.sysDate());
+        };
+        
+        self.departure_date.subscribe(function(newValue) {
+          if (self.arrival_date() && self.compareDate(newValue, self.arrival_date()) && self.checkDepartureDate()) {
+            var Date_A = new Date(newValue), Date_B = new Date(self.arrival_date());  
+            var Date_C = new Date(Date_B - Date_A);
+            var count = (Math.floor(Date_C.getTime()/3600000)+24)/24;
+            var newDate = new Date(self.arrival_date());
+            var dayOfMonth = newDate.getDate();
+            newDate.setDate(dayOfMonth+1);
+            newDate.setHours(17, 0, 0);
+            self.endDate(self.dateFormat(newDate));
+            self.duration(count);
+          } else {
+            self.endDate('');
+            self.duration('');
+          }
+        });
+        
+        self.arrival_date.subscribe(function(newValue) {
+          if (self.departure_date() && self.compareDate(self.departure_date(), newValue) && self.checkDepartureDate()) {
+            var Date_A = new Date(self.departure_date()), Date_B = new Date(newValue);  
+            var Date_C = new Date(Date_B - Date_A);
+            var count = (Math.floor(Date_C.getTime()/3600000)+24)/24;
+            var newDate = new Date(newValue);
+            var dayOfMonth = newDate.getDate();
+            newDate.setDate(dayOfMonth+1);
+            newDate.setHours(17, 0, 0);
+            self.endDate(self.dateFormat(newDate));
+            self.duration(count);
+          } else {
+            self.endDate('');
+            self.duration('');
+          }
+        });
+        
+        self.duration.subscribe(function(newValue) {
+          // 使用天數x租借數量x產品費率
+          if (self.duration() && self.qty()) {
+            self.amount(parseInt(self.duration())*parseInt(self.qty())*parseInt(288));
+          } else {
+            self.amount('');
+          }
+        });
+        
+        self.qty.subscribe(function(newValue) {
+          // 使用天數x租借數量x產品費率
+          if (self.duration() && self.qty()) {
+            self.amount(parseInt(self.duration())*parseInt(self.qty())*parseInt(288));
+          } else {
+            self.amount('');
+          }
+        });
+        
+        self.dateFormat = function(date){
+          var day = date.getDate(), month = date.getMonth()+1, year = date.getFullYear(),
+            hour = (date.getHours()<10 ? '0' : '')+date.getHours(),
+            min = (date.getMinutes()<10 ? '0' : '')+date.getMinutes();
+            //sec = (date.getSeconds()<10 ? '0' : '')+date.getSeconds();
+          return year+'/'+month+'/'+day+' '+hour+':'+min;//+':'+sec;
+        };
+        
+          self.toThousands = function(num){
+          var num = (num || 0).toString(), result = '';
+          while (num.length > 3) {
+              result = ',' + num.slice(-3) + result;
+              num = num.slice(0, num.length - 3);
+          }
+          if (num) { result = num + result; }
+          return result;
+          };
+          
+          self.init = function(){
+              
+                  self.order(true);
+                
+            self.ratePlanOptionsCaption('- 請選擇機種 -');
+            //產品費率-由設定來
+                if (288) {
+                  self.price(288);
+                }
+                //租借數量下拉
+            for (var i=1; i<=10; i++) {
+              self.qtyList.push(new option(i, i,null));
+            }
+            //取得info資訊
+            $.getJSON('https://uattsp.tstartel.com/rest/rateWifiInfo/info').done(function (r) {
+              if (r.result) {
+                //地區.國家.機種List
+                _.forEach(r.result.countryInfo.wsRateWifiInfoCountryInfo, function(value, key) {
+                  self.continentTypeList.push(new option(value.continentTYPE, value.continentTYPE, value.country.wsRateWifiInfoCountry));
+                });
+                //機場List
+                _.forEach(r.result.takePlace.wsRateWifiInfoTakePlace, function(value, key) {
+                  self.deliverList.push(new option(value.takePlaceID, value.takePlaceNAME, null));
+                });
+                //取得預約紀錄
+                self.orderEnable(r.result.isOrder=='true'? true:false);
+              }
+            });
+              
+        };
+        
+        self.getCountry = function(r){
+          self.countryList([]);
+          self.country(null);
+          self.rate_plan(null);
+          self.ratePlanOptionsCaption('- 請選擇機種 -');
+          if (self.continentType()) {
+            $('#continentType').val(self.continentType().value());
+            var data = JSON.parse(self.continentType().others());
+            _.forEach(data, function(value1, key1) {
+              self.countryList.push(new option(value1.country, value1.country, value1.machineInfo.wsRateWifiInfoMachineInfo));
+            });
+          }
+        };
+        
+        self.getRatePlan = function(){
+          self.ratePlanList([])
+          self.rate_plan(null);
+          if (self.country()) {
+            $('#country').val(self.country().value());
+            var data = JSON.parse(self.country().others());
+            if (data.length === 1) {
+              self.ratePlanOptionsCaption(undefined);
+              //self.rate_plan(data[0]);
+              self.setRatePlan();
+            } else {
+              self.ratePlanOptionsCaption('- 請選擇機種 -');
+            }
+            _.forEach(data, function(value, key) {
+              self.ratePlanList.push(new machine(value));
+            });
+          } else {
+            self.ratePlanOptionsCaption('- 請選擇機種 -');
+          }
+        };
+        self.setRatePlan = function(){
+          if (self.rate_plan()) {
+            $('#rate_plan').val(self.rate_plan().value());
+            $('#machine_type').val(self.rate_plan().machineType());
+            $('#rate_package').val(self.rate_plan().machineRatePackage());
+          }
+        };
+        
+        self.redirectOrder = function(){
+          if (self.orderEnable()) {
+            window.location.href = 'https://uattsp.tstartel.com/CWS/WifiRateRecording.php';
+          }
+        };
+        self.triggerValid = function(name){
+          $("#departure_date").trigger('blur');
+          $("#arrival_date").trigger('blur');
+          $("#"+name).focus();
+        };
+      };
+    });
+    </script>
+    <!-- wifi申請表單 元件結束 -->
