@@ -44,12 +44,12 @@
             </div>
           </div>
         </div>
-        <hr class="ts-hr ts-hr--transparent-20 hidden-xs hidden-sm">
+        <hr class="ts-hr ts-hr--transparent-20">
         <div class="row">
           <div class="col-xs-12">
             <div class="row row--10">
               <div class="col ts-u25-form__col-label">
-                <a id="ratePlanScrollTop" data-offset="rwd_s_024_3_1" style="line-height: 40px;cursor: pointer;"><img src="resources/rwd_c_018/images/info-circle-font-awesome.png"></a>機種
+                機種 <a id="ratePlanScrollTop" data-offset="rwd_s_024_3_1" style="line-height: 40px;cursor: pointer;"><img src="resources/rwd_c_018/images/info-circle-font-awesome.png"></a>
               </div>
               <div class="rest">
                 <div class="row row--10">
@@ -68,12 +68,12 @@
             </div>
           </div>
         </div>
-        <hr class="ts-hr ts-hr--transparent-20 hidden-xs hidden-sm">
+        <hr class="ts-hr ts-hr--transparent-20">
         <div class="row">
           <div class="col-xs-12">
             <div class="row row--10">
               <div class="col ts-u25-form__col-label">
-                <a class="popTitleDepartureDate"><img src="resources/rwd_c_018/images/info-circle-font-awesome.png"></a>出國日
+                出國日 <a class="popTitleDepartureDate"><img src="resources/rwd_c_018/images/info-circle-font-awesome.png"></a>
               </div>
               <div class="rest">
                 <div class="row row--10">
@@ -89,7 +89,7 @@
             </div>
           </div>
         </div>
-        <hr class="ts-hr ts-hr--transparent-20 hidden-xs hidden-sm">
+        <hr class="ts-hr ts-hr--transparent-20">
         <div class="row">
           <div class="col-xs-12">
             <div class="row row--10">
@@ -108,21 +108,22 @@
             </div>
           </div>
         </div>
-        <hr class="ts-hr ts-hr--transparent-20 hidden-xs hidden-sm">
+        <hr class="ts-hr ts-hr--transparent-20">
         <div class="row">
           <div class="col-xs-12">
             <div class="row row--10">
-              <div class="col ts-u25-form__col-label">使用天數</div>
+              <div class="col ts-u25-form__col-label hidden-xs hidden-sm">使用天數</div>
               <div class="rest" style="line-height: 40px;">
                 <div class="row row--10"><!-- duration -->
-                  <div class="col col-xs-12 col-md-12" data-bind="text: duration()? duration()+'天':''"></div>
+                  <div class="col col-xs-4 visible-xs visible-sm">產品費率</div>
+                  <div class="col col-xs-8 col-md-8" data-bind="text: duration()? duration()+'天':'-'"></div>
                   <input type="hidden" id="duration" name="duration" data-bind="value: duration()" value="">
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <hr class="ts-hr ts-hr--transparent-20 hidden-xs hidden-sm">
+        <hr class="ts-hr ts-hr--transparent-20">
         <div class="row">
           <div class="col-xs-12">
             <div class="row row--10">
@@ -143,42 +144,45 @@
             </div>
           </div>
         </div>
-        <hr class="ts-hr ts-hr--transparent-20 hidden-xs hidden-sm">
+        <hr class="ts-hr ts-hr--transparent-20">
         <div class="row">
           <div class="col-xs-12">
             <div class="row row--10">
-              <div class="col ts-u25-form__col-label">產品費率</div>
+              <div class="col ts-u25-form__col-label hidden-xs hidden-sm">產品費率</div>
               <div class="rest" style="line-height: 40px;">
                 <div class="row row--10">
-                  <div class="col col-xs-12 col-md-12" data-bind="text: price()? '每台$'+price()+'/日':''">每台$288/日</div>
+                  <div class="col col-xs-4 visible-xs visible-sm">產品費率</div>
+                  <div class="col col-xs-8" data-bind="text: price()? '每台$'+price()+'/日':'-'">每台$288/日</div>
                   <input type="hidden" id="price" name="price" data-bind="value: price()" value="288">
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <hr class="ts-hr ts-hr--transparent-20 hidden-xs hidden-sm">
+        <hr class="ts-hr ts-hr--transparent-20 ">
         <div class="row">
           <div class="col-xs-12">
             <div class="row row--10">
-              <div class="col ts-u25-form__col-label">總金額</div>
+              <div class="col ts-u25-form__col-label hidden-xs hidden-sm">總金額</div>
               <div class="rest" style="line-height: 40px;">
                 <div class="row row--10"><!-- 使用天數x租借數量x產品費率 amount -->
-                  <div class="col col-xs-12 col-md-12" data-bind="text: amount()? '$'+toThousands(amount()):''"></div>
+                  <div class="col col-xs-4 visible-xs visible-sm">總金額</div>
+                  <div class="col col-xs-8" data-bind="text: amount()? '$'+toThousands(amount()):'-'">-</div>
                   <input type="hidden" id="amount" name="amount" data-bind="value: amount()" value="">
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <hr class="ts-hr ts-hr--transparent-20 hidden-xs hidden-sm">
+        <hr class="ts-hr ts-hr--transparent-20 ">
         <div class="row">
           <div class="col-xs-12">
             <div class="row row--10">
-              <div class="col ts-u25-form__col-label">日使用量</div>
+              <div class="col ts-u25-form__col-label hidden-xs hidden-sm">日使用量</div>
               <div class="rest" style="line-height: 40px;">
                 <div class="row row--10"><!-- machineType -->
-                  <div class="col col-xs-12 col-md-12" data-bind="text: rate_plan()? rate_plan().machineType():''"></div>
+                  <div class="col col-xs-4 visible-xs visible-sm">日使用量</div>
+                  <div class="col col-xs-8 col-md-8" data-bind="text: rate_plan()? rate_plan().machineType():'-'"></div>
                   <input type="hidden" id="machine_type" name="machine_type">
                   <input type="hidden" id="rate_package" name="rate_package">
                 </div>
@@ -186,27 +190,28 @@
             </div>
           </div>
         </div>
-        <hr class="ts-hr ts-hr--transparent-20 hidden-xs hidden-sm">
+        <hr class="ts-hr ts-hr--transparent-20 ">
         <div class="row">
           <div class="col-xs-12">
             <div class="row row--10">
-              <div class="col ts-u25-form__col-label">
-                <a class="popTitleEndDate"><img src="resources/rwd_c_018/images/info-circle-font-awesome.png"></a>最晚歸還日期
+              <div class="col ts-u25-form__col-label hidden-xs hidden-sm">
+                最晚歸還日期 
               </div>
               <div class="rest" style="line-height: 40px;">
                 <div class="row row--10"><!-- endDate=arrivalDate+1 -->
-                  <div class="col col-xs-12 col-md-12" data-bind="text: endDate()"></div>
+                  <div class="col col-xs-5 visible-xs visible-sm">最晚歸還日期 <a class="popTitleEndDate"><img src="resources/rwd_c_018/images/info-circle-font-awesome.png"></a></div>
+                  <div class="col col-xs-7 col-md-7" data-bind="text: endDate()">-</div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <hr class="ts-hr ts-hr--transparent-20 hidden-xs hidden-sm">
+        <hr class="ts-hr ts-hr--transparent-20">
         <div class="row">
           <div class="col-xs-12">
             <div class="row row--10">
               <div class="col ts-u25-form__col-label">
-                <a id="deliverScrollTop" data-offset="rwd_c_020_4_1" style="cursor: pointer;"><img src="resources/rwd_c_018/images/info-circle-font-awesome.png"></a>取機機場
+                取機機場 <a id="deliverScrollTop" data-offset="rwd_c_020_4_1" style="cursor: pointer;"><img src="resources/rwd_c_018/images/info-circle-font-awesome.png"></a>
               </div>
               <div class="rest">
                 <div class="row row--10">
@@ -228,6 +233,7 @@
         <hr class="ts-hr ts-hr--transparent-30">
         <div class="text-center">
           <button class="btn ts-u25-form__submit-btn" data-bind="style: { backgroundColor: orderEnable() ? '' : 'gray' }, enable: orderEnable(), click: redirectOrder" style="">預約記錄</button>
+          <hr class="ts-hr ts-hr--transparent-5 visible-xs visible-sm">
           <button class="btn ts-u25-form__submit-btn" data-bind="style: { backgroundColor: order() ? '' : 'gray' }, enable: order()" style="">送出預約</button>
         </div>
         <hr class="ts-hr ts-hr--transparent-40">
